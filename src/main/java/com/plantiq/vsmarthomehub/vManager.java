@@ -1,8 +1,10 @@
 package com.plantiq.vsmarthomehub;
 
+import com.plantiq.vsmarthomehub.models.SmartHomeHub;
 import com.plantiq.vsmarthomehub.models.User;
 import com.plantiq.vsmarthomehub.services.AuthenticationService;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -11,8 +13,7 @@ import javafx.stage.Window;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class vManager extends Application {
@@ -25,8 +26,11 @@ public class vManager extends Application {
 
     private static vManager instance;
 
+    private HashMap<String,SmartHomeHub> runningVirtualHubs;
+
     public vManager(){
         vManager.instance = this;
+        this.runningVirtualHubs = new HashMap<>();
     }
 
     @Override
@@ -99,6 +103,10 @@ public class vManager extends Application {
         this.user = user;
     }
 
+    public User getUser(){
+        return this.user;
+    }
+
     public void setLastPage(String lastPage){
         this.lastPage = lastPage;
     }
@@ -109,5 +117,9 @@ public class vManager extends Application {
 
     public String getVersion(){
         return this.version;
+    }
+
+    public HashMap<String,SmartHomeHub> getRunningVirtualHubs(){
+        return this.runningVirtualHubs;
     }
 }
