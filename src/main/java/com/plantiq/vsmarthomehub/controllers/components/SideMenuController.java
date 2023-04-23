@@ -2,9 +2,13 @@ package com.plantiq.vsmarthomehub.controllers.components;
 
 import com.plantiq.vsmarthomehub.vManager;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 
 public class SideMenuController {
 
@@ -33,27 +37,29 @@ public class SideMenuController {
     @FXML
     HBox bottomButtons;
 
+    private AnchorPane contentContainer;
+
 
     @FXML
     public void initialize(){
         this.virtualSmartHomeHubButton.setOnAction(event->{
-            this.loadPage((Button) event.getSource(), "virtualSmartHomeHubs");
+            this.loadPage((Button) event.getSource(), "virtualSmartHomeHubs","fxml/components/virtualSmartHomeHub.fxml");
         });
         this.smartHomeHubButton.setOnAction(event -> {
-            this.loadPage((Button) event.getSource(), "smartHomeHubs");
+            this.loadPage((Button) event.getSource(), "smartHomeHubs","");
         });
         this.managePlantsButton.setOnAction(event -> {
-            this.loadPage((Button) event.getSource(), "managePlants");
+            this.loadPage((Button) event.getSource(), "managePlants","");
 
         });
         this.dataExplorerButton.setOnAction(event -> {
-            this.loadPage((Button) event.getSource(), "dataExplorer");
+            this.loadPage((Button) event.getSource(), "dataExplorer","");
         });
         this.myAccountButton.setOnAction(event -> {
-            this.loadPage(this.myAccountButton,"myAccount");
+            this.loadPage(this.myAccountButton,"myAccount","");
         });
         this.settingsButton.setOnAction(event -> {
-            this.loadPage(this.settingsButton,"settings");
+            this.loadPage(this.settingsButton,"settings","");
         });
     }
 
@@ -62,31 +68,45 @@ public class SideMenuController {
 
         switch(page){
             case "virtualSmartHomeHubs"->{
-                this.loadPage(this.virtualSmartHomeHubButton, "virtualSmartHomeHubs");
+                this.loadPage(this.virtualSmartHomeHubButton, "virtualSmartHomeHubs","fxml/components/virtualSmartHomeHub.fxml");
             }
             case "smartHomeHubs" ->{
-                this.loadPage(this.smartHomeHubButton, "smartHomeHubs");
+                this.loadPage(this.smartHomeHubButton, "smartHomeHubs","");
             }
             case "managePlants"->{
-                this.loadPage(this.managePlantsButton, "managePlants");
+                this.loadPage(this.managePlantsButton, "managePlants","");
             }
             case "dataExplorer"->{
-                this.loadPage(this.dataExplorerButton, "managePlants");
+                this.loadPage(this.dataExplorerButton, "managePlants","");
             }
             case "myAccount"->{
-                this.loadPage(this.myAccountButton, "myAccount");
+                this.loadPage(this.myAccountButton, "myAccount","");
             }
             case "settings"->{
-                this.loadPage(this.settingsButton, "settings");
+                this.loadPage(this.settingsButton, "settings","");
             }
         }
 
     }
 
 
-    private void loadPage(Button selectedButton,String lastPage){
+    private void loadPage(Button selectedButton,String lastPage,String fxml){
         vManager.getInstance().setLastPage(lastPage);
         this.setActiveButton(selectedButton);
+
+        if(fxml.equals("")){
+            this.contentContainer.getChildren().clear();
+        }else{
+            FXMLLoader loader = new FXMLLoader(vManager.class.getResource(fxml));
+            AnchorPane nodes = null;
+            try {
+                nodes = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            this.contentContainer.getChildren().add(nodes.getChildren().get(0));
+        }
+
     }
 
     private void setActiveButton(Button button){
@@ -116,5 +136,9 @@ public class SideMenuController {
                 n.setStyle("");
             }
         });
+    }
+
+    public void setContentContainer(AnchorPane contentContainer){
+        this.contentContainer = contentContainer;
     }
 }
