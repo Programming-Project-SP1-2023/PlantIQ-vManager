@@ -17,7 +17,7 @@
    <children>
       <ToolBar maxHeight="48.0" minHeight="48.0" prefHeight="48.0" prefWidth="953.0" styleClass="toolBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-            <Pane prefHeight="37.0" prefWidth="23.0" />
+            <Pane prefHeight="37.0" prefWidth="10.0" />
             <ImageView fitHeight="27.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/logo.png" />
