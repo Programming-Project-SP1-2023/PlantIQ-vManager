@@ -1,5 +1,6 @@
 package com.plantiq.vsmarthomehub.controllers.stages;
 
+import com.plantiq.vsmarthomehub.controllers.components.SideMenuController;
 import com.plantiq.vsmarthomehub.vManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,9 @@ public class DashboardController {
     AnchorPane sideMenuContainer;
 
     @FXML
+    AnchorPane contentContainer;
+
+    @FXML
     public void initialize() throws IOException {
         FXMLLoader menuLoader = new FXMLLoader(vManager.class.getResource("fxml/components/navbar.fxml"));
         AnchorPane menuNodes = menuLoader.load();
@@ -25,6 +29,8 @@ public class DashboardController {
         FXMLLoader sideMenuLoader = new FXMLLoader(vManager.class.getResource("fxml/components/sideMenu.fxml"));
         AnchorPane sideMenuNodes = sideMenuLoader.load();
         this.sideMenuContainer.getChildren().add(sideMenuNodes.getChildren().get(0));
+        SideMenuController controller = sideMenuLoader.getController();
+        controller.setContentContainer(this.contentContainer);
     }
 
 
