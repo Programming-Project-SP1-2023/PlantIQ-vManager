@@ -1,0 +1,35 @@
+.btn:hover{
+    -fx-cursor: hand;
+}
+
+.text-field{
+    -fx-background-color: #68945b;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #ececec;
+}
+
+
+.alert{
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-border-color: transparent;
+}
+
+#navContainer .toolBar{
+    -fx-background-color: #3d6333;
+    -fx-padding: 16px;
+    -fx-border-color: transparent;
+}
+
+.menuVbox .button{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.menuVbox .button:hover{
+    -fx-background-color: #68945b;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
