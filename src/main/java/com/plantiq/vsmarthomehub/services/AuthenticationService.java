@@ -77,6 +77,9 @@ public class AuthenticationService {
     }
 
     private static void setUser(String token){
+
+        vManager.getInstance().setToken(token);
+
         String response = null;
         try {
             response = HttpService.getRequest("https://api-plantiq.azurewebsites.net/user/session/"+token);
