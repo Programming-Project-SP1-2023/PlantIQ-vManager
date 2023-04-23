@@ -20,7 +20,7 @@
             <Pane prefHeight="37.0" prefWidth="23.0" />
             <ImageView fitHeight="27.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@logo.png" />
+                  <Image url="@../../images/logo.png" />
                </image>
             </ImageView>
             <Label style="-fx-text-fill: White; -fx-font-weight: bold;" text="vManager">
@@ -37,7 +37,7 @@
                <children>
                   <ImageView fitHeight="27.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@search.png" />
+                        <Image url="@../../icons/search.png" />
                      </image>
                   </ImageView>
                   <TextField prefHeight="27.0" prefWidth="647.0" promptText="Search API and program">
