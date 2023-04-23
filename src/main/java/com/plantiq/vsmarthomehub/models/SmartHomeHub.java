@@ -1,6 +1,7 @@
 package com.plantiq.vsmarthomehub.models;
 
 
+import com.plantiq.vsmarthomehub.core.ModelCollection;
 import com.plantiq.vsmarthomehub.vManager;
 import javafx.scene.control.Button;
 
@@ -9,19 +10,21 @@ public class SmartHomeHub {
 
     private final String id;
     private final String name;
-    private final String user_id;
     private final int lastPosted;
     private final int postFrequency;
-    private final String virtual;
+    private final boolean virtual;
 
     private boolean running;
     private Button startButton;
 
+    public static ModelCollection collection(){
+        return new ModelCollection();
+    }
 
-    public SmartHomeHub(String id,String name,String user_id,int lastPosted,int postFrequency, String virtual){
+
+    public SmartHomeHub(String id, String name, int lastPosted, int postFrequency, boolean virtual){
         this.id =  id;
         this.name = name;
-        this.user_id = user_id;
         this.lastPosted = lastPosted;
         this.postFrequency = postFrequency;
         this.virtual = virtual;
@@ -71,7 +74,7 @@ public class SmartHomeHub {
     }
 
     public boolean isVirtual(){
-        return this.virtual.equals("true");
+        return virtual;
     }
 
     public Button getStartButton(){
