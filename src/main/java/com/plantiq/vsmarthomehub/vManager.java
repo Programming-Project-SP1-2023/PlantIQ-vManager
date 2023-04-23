@@ -20,9 +20,10 @@ public class vManager extends Application {
 
 
     private User user;
+    private String token;
     private String lastPage;
 
-    private String version = "dev 0.1";
+    private final String version = "vManager dev 0.1";
 
     private static vManager instance;
 
@@ -121,5 +122,13 @@ public class vManager extends Application {
 
     public HashMap<String,SmartHomeHub> getRunningVirtualHubs(){
         return this.runningVirtualHubs;
+    }
+
+    public void setToken(String token){
+        this.token = token;
+    }
+
+    public String getToken(){
+        return this.token;
     }
 }
