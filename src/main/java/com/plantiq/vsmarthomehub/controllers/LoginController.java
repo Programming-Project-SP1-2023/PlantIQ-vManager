@@ -1,6 +1,6 @@
 package com.plantiq.vsmarthomehub.controllers;
 
-import com.plantiq.vsmarthomehub.HelloApplication;
+import com.plantiq.vsmarthomehub.vManager;
 import com.plantiq.vsmarthomehub.services.AuthenticationService;
 import javafx.fxml.FXML;
 
@@ -27,8 +27,8 @@ public class LoginController {
 
         if(!emailInputField.getText().isBlank() && !passwordInputField.getText().isBlank()){
             if(AuthenticationService.login(emailInputField.getText(),passwordInputField.getText())){
-                HelloApplication.getInstance().showDashboardStage();
-                HelloApplication.getStageById("login").close();
+                vManager.getInstance().showDashboardStage();
+                vManager.getStageById("login").close();
             }else{
                 alert.setText("Login failed, please check your email and password");
                 alert.setStyle("-fx-background-color:  #6b1a1a");
