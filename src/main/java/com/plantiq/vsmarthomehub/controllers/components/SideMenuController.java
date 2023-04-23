@@ -1,4 +1,4 @@
-package com.plantiq.vsmarthomehub.controllers;
+package com.plantiq.vsmarthomehub.controllers.components;
 
 import com.plantiq.vsmarthomehub.vManager;
 import javafx.fxml.FXML;

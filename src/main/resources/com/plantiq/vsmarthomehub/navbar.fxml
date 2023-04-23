@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="111.0" prefWidth="1181.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.plantiq.vsmarthomehub.controllers.NavbarController">
+<AnchorPane prefHeight="111.0" prefWidth="1181.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.plantiq.vsmarthomehub.controllers.components.NavbarController">
    <children>
       <ToolBar maxHeight="48.0" minHeight="48.0" prefHeight="48.0" prefWidth="953.0" styleClass="toolBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>

@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="423.0" prefWidth="512.0" style="-fx-background-color: #3d6333;" stylesheets="@app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.plantiq.vsmarthomehub.controllers.LoginController">
+<AnchorPane prefHeight="423.0" prefWidth="512.0" style="-fx-background-color: #3d6333;" stylesheets="@app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.plantiq.vsmarthomehub.controllers.stages.LoginController">
    <children>
       <TextField fx:id="emailInputField" layoutX="59.0" layoutY="199.0" prefHeight="35.0" prefWidth="393.0" />
       <PasswordField fx:id="passwordInputField" layoutX="59.0" layoutY="287.0" prefHeight="35.0" prefWidth="393.0" />

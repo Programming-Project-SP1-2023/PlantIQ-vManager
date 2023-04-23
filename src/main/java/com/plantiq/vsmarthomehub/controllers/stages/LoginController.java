@@ -1,4 +1,4 @@
-package com.plantiq.vsmarthomehub.controllers;
+package com.plantiq.vsmarthomehub.controllers.stages;
 
 import com.plantiq.vsmarthomehub.vManager;
 import com.plantiq.vsmarthomehub.services.AuthenticationService;
