@@ -12,6 +12,7 @@ module com.plantiq.vsmarthomehub {
 
 
     exports com.plantiq.vsmarthomehub.models;
+    exports com.plantiq.vsmarthomehub.core;
     exports com.plantiq.vsmarthomehub;
     exports com.plantiq.vsmarthomehub.services;
     exports com.plantiq.vsmarthomehub.controllers.stages;
