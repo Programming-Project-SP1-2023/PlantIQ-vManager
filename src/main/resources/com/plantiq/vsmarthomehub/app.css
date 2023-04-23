@@ -33,3 +33,26 @@
     -fx-cursor: hand;
 }
 
+.btn-link:hover{
+    -fx-underline: true;
+    -fx-cursor: hand;
+}
+
+.btn-primary2{
+    -fx-background-color: #1b66f7;
+}
+
+.btn-primary2:hover{
+    -fx-background-color: #164db4;
+}
+
+.table-row-cell:filled:selected {
+    -fx-background: -fx-control-inner-background ;
+    -fx-background-color: -fx-table-cell-border-color, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-table-cell-border-color: derive(-fx-color, 5%);
+}
+.table-row-cell:odd:filled:selected {
+    -fx-background: -fx-control-inner-background-alt ;
+}
+
