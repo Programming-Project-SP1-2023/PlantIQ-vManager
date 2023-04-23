@@ -6,13 +6,18 @@ public class User {
     private String lastname;
     private String email;
     private int registrationDate;
-    private boolean isAdmin;
+    private String id;
 
-    public User(String firstname, String lastname,String email,int registrationDate, boolean isAdmin){
+    public User(String id, String firstname, String lastname,String email,int registrationDate){
+        this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.registrationDate = registrationDate;
-        this.isAdmin = isAdmin;
     }
+
+    public String getEmail(){
+        return this.email;
+    }
+
 }
