@@ -1,5 +1,7 @@
 package com.plantiq.vsmarthomehub.services;
 
+import com.plantiq.vsmarthomehub.vManager;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -36,6 +38,7 @@ public class HttpService {
                 .uri(URI.create(url))
                 .setHeader("User-Agent","Java 11 HttpClient")
                 .header("Content-Type", "application/x-www-form-urlencoded")
+                .setHeader("Authorization", "Bearer "+ vManager.getInstance().getToken())
                 .build();
 
         HttpResponse<String> response = null;
