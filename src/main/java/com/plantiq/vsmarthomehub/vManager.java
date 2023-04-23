@@ -15,23 +15,27 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class HelloApplication extends Application {
+public class vManager extends Application {
 
 
     private User user;
-    private static HelloApplication instance;
+    private String lastPage;
 
-    public HelloApplication(){
-        HelloApplication.instance = this;
+    private String version = "dev 0.1";
+
+    private static vManager instance;
+
+    public vManager(){
+        vManager.instance = this;
     }
 
     @Override
     public void start(Stage stage) throws IOException {
 
         if(AuthenticationService.checkExistingLogin()){
-            HelloApplication.getInstance().showDashboardStage();
+            vManager.getInstance().showDashboardStage();
         }else {
-            HelloApplication.getInstance().showLoginStage();
+            vManager.getInstance().showLoginStage();
         }
     }
 
@@ -39,8 +43,8 @@ public class HelloApplication extends Application {
         launch();
     }
 
-    public static HelloApplication getInstance(){
-        return HelloApplication.instance;
+    public static vManager getInstance(){
+        return vManager.instance;
     }
 
     public static Stage getStageById(String id){
@@ -65,7 +69,7 @@ public class HelloApplication extends Application {
 
     public void showLoginStage() throws IOException {
         Stage loginStage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(vManager.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         loginStage.setTitle("PlantIQ | login");
@@ -79,11 +83,11 @@ public class HelloApplication extends Application {
     public void showDashboardStage() throws IOException {
         Stage dashboardStage = new Stage();
         dashboardStage.setTitle("PlantIQ | vManager");
-        dashboardStage.getIcons().add(new Image(Objects.requireNonNull(HelloApplication.class.getResourceAsStream("icon.png"))));
+        dashboardStage.getIcons().add(new Image(Objects.requireNonNull(vManager.class.getResourceAsStream("icon.png"))));
         dashboardStage.setResizable(true);
         dashboardStage.setMaximized(true);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(vManager.class.getResource("dashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         dashboardStage.setScene(scene);
@@ -93,5 +97,17 @@ public class HelloApplication extends Application {
 
     public void setUser(User user){
         this.user = user;
+    }
+
+    public void setLastPage(String lastPage){
+        this.lastPage = lastPage;
+    }
+
+    public String getLastPage(){
+        return this.lastPage;
+    }
+
+    public String getVersion(){
+        return this.version;
     }
 }
