@@ -69,12 +69,12 @@ public class vManager extends Application {
 
     public void showLoginStage() throws IOException {
         Stage loginStage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(vManager.class.getResource("login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(vManager.class.getResource("fxml/stages/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         loginStage.setTitle("PlantIQ | login");
         loginStage.setResizable(false);
-        loginStage.getIcons().add(new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("icon.png"))));
+        loginStage.getIcons().add(new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("icons/icon.png"))));
         loginStage.setScene(scene);
         loginStage.getProperties().put("id", "login");
         loginStage.show();
@@ -83,11 +83,11 @@ public class vManager extends Application {
     public void showDashboardStage() throws IOException {
         Stage dashboardStage = new Stage();
         dashboardStage.setTitle("PlantIQ | vManager");
-        dashboardStage.getIcons().add(new Image(Objects.requireNonNull(vManager.class.getResourceAsStream("icon.png"))));
+        dashboardStage.getIcons().add(new Image(Objects.requireNonNull(vManager.class.getResourceAsStream("icons/icon.png"))));
         dashboardStage.setResizable(true);
         dashboardStage.setMaximized(true);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(vManager.class.getResource("dashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(vManager.class.getResource("fxml/stages/dashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         dashboardStage.setScene(scene);
