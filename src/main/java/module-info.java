@@ -7,10 +7,13 @@ module com.plantiq.vsmarthomehub {
     requires org.json;
 
     opens com.plantiq.vsmarthomehub to javafx.fxml;
-    opens com.plantiq.vsmarthomehub.controllers to javafx.fxml;
+    opens com.plantiq.vsmarthomehub.controllers.stages to javafx.fxml;
+    opens com.plantiq.vsmarthomehub.controllers.components to javafx.fxml;
+
 
     exports com.plantiq.vsmarthomehub.models;
     exports com.plantiq.vsmarthomehub;
-    exports com.plantiq.vsmarthomehub.controllers;
     exports com.plantiq.vsmarthomehub.services;
+    exports com.plantiq.vsmarthomehub.controllers.stages;
+    exports com.plantiq.vsmarthomehub.controllers.components;
 }
