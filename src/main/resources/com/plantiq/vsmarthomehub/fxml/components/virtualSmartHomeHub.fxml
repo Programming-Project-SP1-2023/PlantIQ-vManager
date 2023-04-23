@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.plantiq.vsmarthomehub.controllers.components.VirtualSmartHomeHubController">
+   <children>
+      <VBox layoutX="131.0" layoutY="146.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="32.0">
+         <children>
+            <HBox prefHeight="214.0" prefWidth="1280.0" style="-fx-background-color: #252525;">
+               <children>
+                  <VBox prefHeight="182.0" prefWidth="399.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="287.0" style="-fx-text-fill: #969696;" styleClass="h6" text="virtual-asset" />
+                        <Label prefHeight="17.0" style="-fx-text-fill: white;" styleClass="h2" text="Virtual smart home hub's">
+                           <VBox.margin>
+                              <Insets bottom="16.0" top="16.0" />
+                           </VBox.margin></Label>
+                        <HBox prefHeight="42.0" prefWidth="287.0">
+                           <children>
+                              <Button graphicTextGap="0.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: #1b66f7;" styleClass="btn-link" text="+ Add timer" />
+                              <Button graphicTextGap="0.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: #1b66f7;" styleClass="btn-link" text="+ Add to auto start" />
+                           </children>
+                        </HBox>
+                        <Label prefHeight="69.0" prefWidth="392.0" style="-fx-text-fill: #969696;" styleClass="h6" text="Virtual smart hubs are your way to learn, play and experiance the PlantIQ system with out the need for the physical hardware!" wrapText="true" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                     </HBox.margin>
+                  </VBox>
+                   <Pane HBox.hgrow="ALWAYS" />
+                  <VBox alignment="BASELINE_LEFT" prefHeight="214.0" prefWidth="119.0">
+                     <children>
+                         <Button mnemonicParsing="false" prefHeight="79.0" prefWidth="100.0" text="Add New">
+                           <styleClass>
+                              <String fx:value="btn" />
+                              <String fx:value="btn-success" />
+                           </styleClass>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="100.0" style="-fx-text-fill: white;" text="Register">
+                           <styleClass>
+                              <String fx:value="btn" />
+                              <String fx:value="btn-primary2" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="32.0" />
+               </VBox.margin>
+            </HBox>
+            <TableView fx:id="table" prefHeight="436.0" prefWidth="1280.0">
+              <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="76.00006103515625" text="Hub Name:" />
+                  <TableColumn fx:id="postFrequencyColumn" prefWidth="115.33331298828125" text="Update Frequency:" />
+                  <TableColumn fx:id="lastPostedColumn" prefWidth="93.3333740234375" text="Last Updated:" />
+                  <TableColumn fx:id="runningColumn" prefWidth="84.66668701171875" text="Running?:" />
+                  <TableColumn fx:id="actionColumn" prefWidth="84.66668701171875" text="Actions:" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
