@@ -40,11 +40,17 @@ public class VirtualSmartHomeHubController {
     private ComboBox<Integer> offsetSelector;
 
     @FXML
+    private TextField tableSearchInput;
+
+
+    @FXML
 
     public void initialize(){
 
+        //Bind the instance
         VirtualSmartHomeHubController.instance = this;
 
+        //Set up the time
         this.table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         this.nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -65,7 +71,6 @@ public class VirtualSmartHomeHubController {
 
         this.limitSelector.valueProperty().addListener((observableValue, integer, t1) -> this.launchFetchSmartHomeHubsTask());
 
-
         //Setup offset selector
         this.offsetSelector.getItems().add(0);
         this.offsetSelector.getItems().add(5);
@@ -78,7 +83,7 @@ public class VirtualSmartHomeHubController {
 
         this.offsetSelector.valueProperty().addListener((observableValue, integer, t1) -> this.launchFetchSmartHomeHubsTask());
 
-
+        //load the data
         this.launchFetchSmartHomeHubsTask();
     }
 

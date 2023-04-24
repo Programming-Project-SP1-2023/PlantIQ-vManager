@@ -74,7 +74,7 @@
                               <Insets right="4.0" />
                            </HBox.margin>
                         </ImageView>
-                        <TextField alignment="BASELINE_LEFT" prefHeight="25.0" prefWidth="190.0" promptText="Search" styleClass="text-field-clear" />
+                        <TextField fx:id="tableSearchInput" alignment="BASELINE_LEFT" prefHeight="25.0" prefWidth="190.0" promptText="Search" styleClass="text-field-clear" />
                         <Pane HBox.hgrow="ALWAYS" />
                      </children>
                      <VBox.margin>
