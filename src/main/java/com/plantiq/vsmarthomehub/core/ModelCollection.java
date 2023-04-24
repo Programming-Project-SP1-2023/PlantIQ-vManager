@@ -43,6 +43,7 @@ public class ModelCollection {
         });
 
         String URI = "https://api-plantiq.azurewebsites.net/smarthub/all";
+
         if(!parameters.isEmpty()){
             URI += parameters.toString();
         }
@@ -58,6 +59,11 @@ public class ModelCollection {
         if(response != null){
 
             JSONObject result = new JSONObject(response);
+
+            if(!result.has("list")){
+                return output;
+            }
+
             JSONArray results = result.getJSONArray("list");
 
             results.forEach((n)->{
