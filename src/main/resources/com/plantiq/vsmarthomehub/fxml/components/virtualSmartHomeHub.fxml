@@ -11,8 +11,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.plantiq.vsmarthomehub.controllers.components.VirtualSmartHomeHubController">
@@ -81,15 +83,31 @@
                         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                      </VBox.margin>
                   </HBox>
-                  <TableView fx:id="table" prefHeight="436.0" prefWidth="1280.0" VBox.vgrow="ALWAYS">
-                    <columns>
-                      <TableColumn fx:id="nameColumn" prefWidth="76.00006103515625" text="Hub Name:" />
-                        <TableColumn fx:id="postFrequencyColumn" prefWidth="115.33331298828125" text="Update Frequency:" />
-                        <TableColumn fx:id="lastPostedColumn" prefWidth="93.3333740234375" text="Last Updated:" />
-                        <TableColumn fx:id="runningColumn" prefWidth="84.66668701171875" text="Running?:" />
-                        <TableColumn fx:id="actionColumn" prefWidth="84.66668701171875" text="Actions:" />
-                    </columns>
-                  </TableView>
+                  <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <TableView fx:id="table" prefHeight="436.0" prefWidth="1280.0">
+                          <columns>
+                            <TableColumn fx:id="nameColumn" prefWidth="76.00006103515625" text="Hub Name:" />
+                              <TableColumn fx:id="postFrequencyColumn" prefWidth="115.33331298828125" text="Update Frequency:" />
+                              <TableColumn fx:id="lastPostedColumn" prefWidth="93.3333740234375" text="Last Updated:" />
+                              <TableColumn fx:id="runningColumn" prefWidth="84.66668701171875" text="Running?:" />
+                              <TableColumn fx:id="actionColumn" prefWidth="84.66668701171875" text="Actions:" />
+                          </columns>
+                        </TableView>
+                        <BorderPane fx:id="loadingOverlay" prefHeight="268.0" prefWidth="1216.0" style="-fx-background-color: RGBA(0,0,0,0.5);">
+                           <center>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../../icons/loading.gif" />
+                                 </image>
+                              </ImageView>
+                           </center>
+                           <StackPane.margin>
+                              <Insets top="24.0" />
+                           </StackPane.margin>
+                        </BorderPane>
+                     </children>
+                  </StackPane>
                   <HBox prefHeight="31.0" prefWidth="1216.0">
                      <children>
                         <Label prefHeight="25.0" prefWidth="44.0" style="-fx-text-fill: white;" text="Limit:" />
