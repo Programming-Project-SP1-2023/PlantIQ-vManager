@@ -1,4 +1,6 @@
 @import "table.css";
+@import "comboBox.css";
+@import "scrollbar.css";
 
 .btn:hover{
     -fx-cursor: hand;
