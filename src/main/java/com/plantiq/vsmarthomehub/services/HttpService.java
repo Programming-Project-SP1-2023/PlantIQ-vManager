@@ -33,6 +33,24 @@ public class HttpService {
         return response.body();
     }
 
+    public static String patchRequest(String url, String data) throws IOException, InterruptedException {
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .method("PATCH",HttpRequest.BodyPublishers.ofString(data))
+                .uri(URI.create(url))
+                .setHeader("User-Agent","Java 11 HttpClient")
+                .setHeader("Authorization", "Bearer "+ vManager.getInstance().getToken())
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .build();
+
+        HttpResponse<String> response = null;
+        response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println("[HttpService] Performed PATCH request to '"+url+"'");
+
+        return response.body();
+    }
+
     public static String getRequest(String url) throws IOException, InterruptedException {
 
         HttpRequest request = HttpRequest.newBuilder()
