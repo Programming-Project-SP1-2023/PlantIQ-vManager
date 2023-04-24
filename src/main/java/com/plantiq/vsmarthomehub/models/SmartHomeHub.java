@@ -2,13 +2,22 @@ package com.plantiq.vsmarthomehub.models;
 
 
 import com.plantiq.vsmarthomehub.controllers.components.VirtualSmartHomeHubController;
+import com.plantiq.vsmarthomehub.controllers.stages.ViewSmartHomeHubController;
 import com.plantiq.vsmarthomehub.core.ModelCollection;
 import com.plantiq.vsmarthomehub.services.TimeService;
 import com.plantiq.vsmarthomehub.vManager;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
+import org.kordamp.bootstrapfx.BootstrapFX;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class SmartHomeHub {
 
@@ -30,12 +39,14 @@ public class SmartHomeHub {
 
     private HBox actionButtons;
 
+    private String json;
+
     public static ModelCollection collection(){
         return new ModelCollection();
     }
 
 
-    public SmartHomeHub(String id, String name, int lastPosted, int postFrequency, boolean virtual){
+    public SmartHomeHub(String id, String name, int lastPosted, int postFrequency, boolean virtual, String json){
         this.id =  id;
         this.name = name;
         this.lastPosted = lastPosted;
@@ -43,6 +54,7 @@ public class SmartHomeHub {
         this.lastPostedReadable = TimeService.StringFromTimeStamp(lastPosted);
         this.virtual = virtual;
         this.running = vManager.getInstance().getRunningVirtualHubs().containsKey(id);
+        this.json = json;
         String buttonValue;
         String buttonClass;
         if(running){
@@ -89,6 +101,32 @@ public class SmartHomeHub {
         this.viewButton.setPrefWidth(24);
         this.viewButton.getStyleClass().add("btn");
         this.viewButton.getStyleClass().add("btn-primary2");
+        this.viewButton.setOnAction((event)->{
+
+            if(vManager.getStageById(this.id) == null){
+                Stage stage = new Stage();
+                stage.getProperties().put("id",this.id);
+                stage.setResizable(false);
+                stage.getIcons().add(new Image(Objects.requireNonNull(vManager.class.getResourceAsStream("icons/icon.png"))));
+                stage.setTitle("Smart Home Hub's | "+this.name);
+                FXMLLoader loader = new FXMLLoader(vManager.class.getResource("fxml/stages/viewSmartHomeHub.fxml"));
+                try {
+                    Scene scene = new Scene(loader.load());
+                    scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+                    stage.setScene(scene);
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                ViewSmartHomeHubController controller = loader.getController();
+                controller.setSmartHomeHub(this);
+                stage.show();
+            }else{
+                vManager.getStageById(this.id).requestFocus();
+            }
+
+
+        });
 
         this.deleteButton = new Button("Delete");
         this.deleteButton.setPrefWidth(24);
@@ -139,5 +177,9 @@ public class SmartHomeHub {
 
     public String getLastPostedReadable(){
         return this.lastPostedReadable;
+    }
+
+    public String getJson(){
+        return this.json;
     }
 }
