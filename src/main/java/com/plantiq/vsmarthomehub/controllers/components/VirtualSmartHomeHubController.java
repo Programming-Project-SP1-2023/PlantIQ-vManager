@@ -46,6 +46,8 @@ public class VirtualSmartHomeHubController {
     @FXML
     private BorderPane loadingOverlay;
 
+    @FXML
+    private BorderPane noHubsFound;
 
     @FXML
 
@@ -54,8 +56,9 @@ public class VirtualSmartHomeHubController {
         //Bind the instance
         VirtualSmartHomeHubController.instance = this;
 
-        //Set up the time
+        //Set up the table
         this.table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.table.setPlaceholder(new Label(""));
 
         this.nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         this.postFrequencyColumn.setCellValueFactory(new PropertyValueFactory<>("postFrequency"));
@@ -105,6 +108,7 @@ public class VirtualSmartHomeHubController {
     public void setTableData(ObservableList<SmartHomeHub> data){
         this.table.setItems(data);
         this.loadingOverlay.setVisible(false);
+        this.noHubsFound.setVisible(data.size() == 0);
     }
 
     public void refreshTableData(){
