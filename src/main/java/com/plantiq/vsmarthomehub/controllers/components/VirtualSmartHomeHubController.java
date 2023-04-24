@@ -15,7 +15,7 @@ public class VirtualSmartHomeHubController {
     private static VirtualSmartHomeHubController instance;
 
     @FXML
-    private TableColumn<SmartHomeHub, Integer> lastPostedColumn;
+    private TableColumn<SmartHomeHub, String> lastPostedColumn;
 
     @FXML
     private TableColumn<SmartHomeHub, String> nameColumn;
@@ -49,7 +49,7 @@ public class VirtualSmartHomeHubController {
 
         this.nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         this.postFrequencyColumn.setCellValueFactory(new PropertyValueFactory<>("postFrequency"));
-        this.lastPostedColumn.setCellValueFactory(new PropertyValueFactory<>("lastPosted"));
+        this.lastPostedColumn.setCellValueFactory(new PropertyValueFactory<>("lastPostedReadable"));
         this.runningColumn.setCellValueFactory(new PropertyValueFactory<>("running"));
         this.actionColumn.setCellValueFactory(new PropertyValueFactory<>("actionButtons"));
         this.actionColumn.setMinWidth(120);
