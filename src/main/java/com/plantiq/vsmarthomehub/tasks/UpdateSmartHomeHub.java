@@ -16,7 +16,7 @@ public class UpdateSmartHomeHub extends Task<SmartHomeHub> {
     @Override
     protected SmartHomeHub call() throws Exception {
 
-        HttpService.patchRequest("http://localhost:8080/smarthub/"+this.model.getId(),"name="+this.model.getName()+"&postFrequency="+this.model.getPostFrequency());
+        HttpService.patchRequest("https://api-plantiq.azurewebsites.net/smarthub/"+this.model.getId(),"name="+this.model.getName()+"&postFrequency="+this.model.getPostFrequency());
         return this.model;
     }
 }
