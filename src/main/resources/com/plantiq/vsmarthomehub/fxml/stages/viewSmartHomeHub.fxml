@@ -54,9 +54,9 @@
             <Insets left="16.0" right="16.0" />
          </padding>
       </HBox>
-      <HBox layoutY="124.0" prefHeight="476.0" prefWidth="900.0" stylesheets="@../../app.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+      <HBox layoutY="124.0" prefHeight="256.0" prefWidth="900.0" stylesheets="@../../app.css" AnchorPane.bottomAnchor="226.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
          <children>
-            <VBox prefHeight="490.0" prefWidth="294.0" HBox.hgrow="SOMETIMES">
+            <VBox prefHeight="200.0" prefWidth="294.0" HBox.hgrow="SOMETIMES">
                <children>
                   <VBox prefHeight="240.0" prefWidth="294.0" style="-fx-background-color: #252525;" VBox.vgrow="NEVER">
                      <children>
@@ -96,7 +96,7 @@
                   <Insets bottom="16.0" left="16.0" right="8.0" />
                </HBox.margin>
             </VBox>
-            <VBox prefHeight="404.0" prefWidth="558.0" HBox.hgrow="ALWAYS">
+            <VBox prefHeight="489.0" prefWidth="558.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="16.0" left="8.0" right="16.0" />
                </HBox.margin>
@@ -170,6 +170,15 @@
                   </StackPane>
                </children>
             </VBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="210.0" prefWidth="868.0" style="-fx-background-color: #252525;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0">
+         <children>
+            <Label prefHeight="49.0" prefWidth="250.0" style="-fx-text-fill: #adadad;" styleClass="h5" text="Operating Statistics:">
+               <padding>
+                  <Insets bottom="16.0" left="16.0" top="16.0" />
+               </padding>
+            </Label>
          </children>
       </HBox>
    </children>
