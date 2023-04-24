@@ -17,4 +17,5 @@ module com.plantiq.vsmarthomehub {
     exports com.plantiq.vsmarthomehub.services;
     exports com.plantiq.vsmarthomehub.controllers.stages;
     exports com.plantiq.vsmarthomehub.controllers.components;
+    exports com.plantiq.vsmarthomehub.tasks;
 }
