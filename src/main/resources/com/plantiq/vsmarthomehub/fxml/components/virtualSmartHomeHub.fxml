@@ -106,6 +106,23 @@
                               <Insets top="24.0" />
                            </StackPane.margin>
                         </BorderPane>
+                        <BorderPane fx:id="noHubsFound" prefHeight="268.0" prefWidth="1216.0" visible="false">
+                           <center>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../icons/information.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label text="No smart home hubs current registerd!" textFill="WHITE">
+                                       <VBox.margin>
+                                          <Insets top="16.0" />
+                                       </VBox.margin></Label>
+                                 </children>
+                              </VBox>
+                           </center>
+                        </BorderPane>
                      </children>
                   </StackPane>
                   <HBox prefHeight="31.0" prefWidth="1216.0">
