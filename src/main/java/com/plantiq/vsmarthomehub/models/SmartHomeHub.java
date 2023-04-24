@@ -3,6 +3,7 @@ package com.plantiq.vsmarthomehub.models;
 
 import com.plantiq.vsmarthomehub.controllers.components.VirtualSmartHomeHubController;
 import com.plantiq.vsmarthomehub.core.ModelCollection;
+import com.plantiq.vsmarthomehub.services.TimeService;
 import com.plantiq.vsmarthomehub.vManager;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -17,6 +18,8 @@ public class SmartHomeHub {
     private final int lastPosted;
     private final int postFrequency;
     private final boolean virtual;
+
+    private String lastPostedReadable;
 
     private boolean running;
     private Button startButton;
@@ -37,6 +40,7 @@ public class SmartHomeHub {
         this.name = name;
         this.lastPosted = lastPosted;
         this.postFrequency = postFrequency;
+        this.lastPostedReadable = TimeService.StringFromTimeStamp(lastPosted);
         this.virtual = virtual;
         this.running = vManager.getInstance().getRunningVirtualHubs().containsKey(id);
         String buttonValue;
@@ -131,5 +135,9 @@ public class SmartHomeHub {
 
     public HBox getActionButtons(){
         return this.actionButtons;
+    }
+
+    public String getLastPostedReadable(){
+        return this.lastPostedReadable;
     }
 }
