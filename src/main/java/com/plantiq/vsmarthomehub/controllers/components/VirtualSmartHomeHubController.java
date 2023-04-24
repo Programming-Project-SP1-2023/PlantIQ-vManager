@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 
@@ -41,6 +42,9 @@ public class VirtualSmartHomeHubController {
 
     @FXML
     private TextField tableSearchInput;
+
+    @FXML
+    private BorderPane loadingOverlay;
 
 
     @FXML
@@ -100,6 +104,7 @@ public class VirtualSmartHomeHubController {
 
     public void setTableData(ObservableList<SmartHomeHub> data){
         this.table.setItems(data);
+        this.loadingOverlay.setVisible(false);
     }
 
     public void refreshTableData(){
