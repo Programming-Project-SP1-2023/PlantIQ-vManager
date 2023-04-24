@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
@@ -23,9 +24,9 @@ public class SmartHomeHub {
 
 
     private final String id;
-    private final String name;
-    private final int lastPosted;
-    private final int postFrequency;
+    private String name;
+    private int lastPosted;
+    private int postFrequency;
     private final boolean virtual;
 
     private String lastPostedReadable;
@@ -39,7 +40,7 @@ public class SmartHomeHub {
 
     private HBox actionButtons;
 
-    private String json;
+    private JSONObject json;
 
     public static ModelCollection collection(){
         return new ModelCollection();
@@ -54,7 +55,7 @@ public class SmartHomeHub {
         this.lastPostedReadable = TimeService.StringFromTimeStamp(lastPosted);
         this.virtual = virtual;
         this.running = vManager.getInstance().getRunningVirtualHubs().containsKey(id);
-        this.json = json;
+        this.json = new JSONObject(json);
         String buttonValue;
         String buttonClass;
         if(running){
@@ -180,6 +181,17 @@ public class SmartHomeHub {
     }
 
     public String getJson(){
-        return this.json;
+        return this.json.toString();
     }
+
+    public void setName(String name){
+        this.name = name;
+        this.json.put("name",name);
+    }
+
+    public void setPostFrequency(int frequency){
+        this.postFrequency = frequency;
+        this.json.put("postFrequency",frequency);
+    }
+
 }
