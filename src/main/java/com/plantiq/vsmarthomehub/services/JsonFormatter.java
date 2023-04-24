@@ -42,20 +42,28 @@ public class JsonFormatter {
                     output.add(bracket);
 
                     boolean addComer = false;
+                    boolean addNewLine = false;
                     String textValue;
 
                     if(pairs[1].contains(",")){
                         addComer = true;
                         textValue = pairs[1].substring(0,pairs[1].length()-1);
                     }else{
-                        textValue = pairs[1]+"\n";
+                        addNewLine = true;
+                        textValue = pairs[1];
                     }
                     Text keyContents = new Text(textValue);
+
                     if(JsonFormatter.isFloat(textValue) || JsonFormatter.isBool(textValue)){
                         keyContents.setStyle("-fx-fill: #f0e137");
                     }else{
                         keyContents.setStyle("-fx-fill: #a896ff");
                     }
+
+                    if(addNewLine){
+                        keyContents.setText(keyContents.getText()+"\n");
+                    }
+
                     output.add(keyContents);
 
                     if(addComer){
