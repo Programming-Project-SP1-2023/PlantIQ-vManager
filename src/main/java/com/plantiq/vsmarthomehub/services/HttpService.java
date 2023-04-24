@@ -28,6 +28,8 @@ public class HttpService {
         HttpResponse<String> response = null;
         response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
+        System.out.println("[HttpService] Performed POST request to '"+url+"'");
+
         return response.body();
     }
 
@@ -44,6 +46,8 @@ public class HttpService {
         HttpResponse<String> response = null;
         response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
+        System.out.println("[HttpService] Performed GET request to '"+url+"'");
+
         return response.body();
     }
 
@@ -58,6 +62,8 @@ public class HttpService {
 
         HttpResponse<String> response = null;
         response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println("[HttpService] Performed DELETE request to '"+url+"'");
 
         return response.body();
     }
