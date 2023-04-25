@@ -82,7 +82,7 @@ public class AuthenticationService {
 
         String response = null;
         try {
-            response = HttpService.getRequest("https://api-plantiq.azurewebsites.net/user/session/"+token);
+            response = HttpService.getRequest("https://api-plantiq.azurewebsites.net/user/info");
         } catch (InterruptedException | IOException e) {
             throw new RuntimeException(e);
         }
