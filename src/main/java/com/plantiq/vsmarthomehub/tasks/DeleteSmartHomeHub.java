@@ -1,10 +1,10 @@
 package com.plantiq.vsmarthomehub.tasks;
 
 import com.plantiq.vsmarthomehub.core.Model;
+import com.plantiq.vsmarthomehub.http.HttpMethods;
+import com.plantiq.vsmarthomehub.http.Response;
 import com.plantiq.vsmarthomehub.models.SmartHomeHub;
-import com.plantiq.vsmarthomehub.services.HttpService;
 import javafx.concurrent.Task;
-import org.json.JSONObject;
 
 public class DeleteSmartHomeHub extends Task<Boolean> {
 
@@ -18,8 +18,9 @@ public class DeleteSmartHomeHub extends Task<Boolean> {
     @Override
     protected Boolean call() throws Exception {
 
-        JSONObject result = new JSONObject(HttpService.deleteRequest("https://api-plantiq.azurewebsites.net/smarthub/" + this.model.getData().getString("id"),true));
+        Response response = Response.fromRequest("/smarthub/"+this.model.getData().getString("id"), HttpMethods.DELETE,null,true);
 
-        return result.getString("outcome").equals("true");
+
+        return response.getStatus() == 200 && response.getOutcome();
     }
 }
