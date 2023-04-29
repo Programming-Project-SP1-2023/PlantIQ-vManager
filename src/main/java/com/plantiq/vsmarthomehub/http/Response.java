@@ -21,10 +21,13 @@ public class Response {
 
         HttpRequest.Builder request = HttpRequest.newBuilder();
 
-        request.uri(URI.create(vManager.getInstance().baseURI+uri));
-
         switch (method){
-            case GET -> request.GET();
+            case GET -> {
+                request.GET();
+                if(data != null){
+                    uri+=data;
+                }
+            }
             case POST -> {
                 request.POST(HttpRequest.BodyPublishers.ofString(data));
                 request.header("Content-Type", "application/x-www-form-urlencoded");
@@ -35,6 +38,8 @@ public class Response {
             }
             case DELETE -> request.DELETE();
         }
+
+        request.uri(URI.create(vManager.getInstance().baseURI+uri));
 
         request.setHeader("User-Agent","PlantIQ vManager client");
 
