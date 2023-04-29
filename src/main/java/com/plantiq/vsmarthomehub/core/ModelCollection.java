@@ -67,7 +67,7 @@ public class ModelCollection {
             JSONArray results = result.getJSONArray("list");
 
             results.forEach((n)->{
-                output.add(new SmartHomeHub(((JSONObject)n).getString("id"),((JSONObject)n).getString("name"),((JSONObject)n).getInt("lastPosted"),((JSONObject)n).getInt("postFrequency"),true,n.toString()));
+                output.add(new SmartHomeHub((JSONObject) n));
             });
         }
 
