@@ -2,7 +2,9 @@ package com.plantiq.vsmarthomehub.models;
 
 
 import com.plantiq.vsmarthomehub.controllers.components.VirtualSmartHomeHubController;
+import com.plantiq.vsmarthomehub.controllers.stages.DeleteModelController;
 import com.plantiq.vsmarthomehub.controllers.stages.ViewSmartHomeHubController;
+import com.plantiq.vsmarthomehub.core.Model;
 import com.plantiq.vsmarthomehub.core.ModelCollection;
 import com.plantiq.vsmarthomehub.services.TimeService;
 import com.plantiq.vsmarthomehub.vManager;
@@ -13,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 import org.kordamp.bootstrapfx.BootstrapFX;
@@ -20,16 +23,9 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 import java.io.IOException;
 import java.util.Objects;
 
-public class SmartHomeHub {
+public class SmartHomeHub extends Model {
 
 
-    private final String id;
-    private String name;
-    private int lastPosted;
-    private int postFrequency;
-    private final boolean virtual;
-
-    private String lastPostedReadable;
 
     private boolean running;
     private Button startButton;
@@ -40,25 +36,20 @@ public class SmartHomeHub {
 
     private HBox actionButtons;
 
-    private JSONObject json;
 
     public static ModelCollection collection(){
         return new ModelCollection();
     }
 
 
-    public SmartHomeHub(String id, String name, int lastPosted, int postFrequency, boolean virtual, String json){
-        this.id =  id;
-        this.name = name;
-        this.lastPosted = lastPosted;
-        this.postFrequency = postFrequency;
-        this.lastPostedReadable = TimeService.StringFromTimeStamp(lastPosted);
-        this.virtual = virtual;
+    public SmartHomeHub(JSONObject data){
+        super(data);
+        String id = data.getString("id");
+
         this.running = vManager.getInstance().getRunningVirtualHubs().containsKey(id);
-        this.json = new JSONObject(json);
         String buttonValue;
         String buttonClass;
-        if(running){
+        if(this.running){
             buttonValue = "Stop";
             buttonClass = "btn-danger";
         }else{
@@ -74,7 +65,7 @@ public class SmartHomeHub {
             if(running){
 
                 if(vManager.getInstance().getRunningVirtualHubs().containsKey(id)){
-                    vManager.getInstance().getRunningVirtualHubs().remove(this.id);
+                    vManager.getInstance().getRunningVirtualHubs().remove(id);
                 }
                 this.running = false;
                 this.startButton.setText("Start");
@@ -104,12 +95,12 @@ public class SmartHomeHub {
         this.viewButton.getStyleClass().add("btn-primary2");
         this.viewButton.setOnAction((event)->{
 
-            if(vManager.getStageById(this.id) == null){
+            if(vManager.getStageById("VIEW"+id) == null){
                 Stage stage = new Stage();
-                stage.getProperties().put("id",this.id);
+                stage.getProperties().put("id",id);
                 stage.setResizable(false);
                 stage.getIcons().add(new Image(Objects.requireNonNull(vManager.class.getResourceAsStream("icons/icon.png"))));
-                stage.setTitle("Smart Home Hub's | "+this.name);
+                stage.setTitle("Smart Home Hub's | "+this.data.getString("name"));
                 FXMLLoader loader = new FXMLLoader(vManager.class.getResource("fxml/stages/viewSmartHomeHub.fxml"));
                 try {
                     Scene scene = new Scene(loader.load());
@@ -123,7 +114,7 @@ public class SmartHomeHub {
                 controller.setSmartHomeHub(this);
                 stage.show();
             }else{
-                vManager.getStageById(this.id).requestFocus();
+                vManager.getStageById(id).requestFocus();
             }
 
 
@@ -133,6 +124,33 @@ public class SmartHomeHub {
         this.deleteButton.setPrefWidth(24);
         this.deleteButton.getStyleClass().add("btn");
         this.deleteButton.getStyleClass().add("btn-danger");
+        this.deleteButton.setOnAction((event -> {
+
+            if(vManager.getStageById("DELETE"+id) == null){
+
+                Stage stage = new Stage();
+                stage.getProperties().put("id",id);
+                stage.setResizable(false);
+                stage.getIcons().add(new Image(Objects.requireNonNull(vManager.class.getResourceAsStream("icons/icon.png"))));
+                stage.setTitle("Delete | "+this.data.getString("name"));
+                stage.initModality(Modality.APPLICATION_MODAL);
+                FXMLLoader loader = new FXMLLoader(vManager.class.getResource("fxml/stages/deleteModel.fxml"));
+                try {
+                    Scene scene = new Scene(loader.load());
+                    scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+                    stage.setScene(scene);
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                DeleteModelController controller = loader.getController();
+                controller.setModel(this);
+                controller.setStage(stage);
+                stage.show();
+            }else{
+                vManager.getStageById(id).requestFocus();
+            }
+        }));
 
         this.actionButtons = new HBox();
         this.actionButtons.setSpacing(8);
@@ -149,23 +167,23 @@ public class SmartHomeHub {
     }
 
     public String getId(){
-        return this.id;
+        return this.data.getString("id");
     }
 
     public String getName(){
-        return this.name;
+        return this.data.getString("name");
     }
 
     public int getLastPosted(){
-        return this.lastPosted;
+        return this.data.getInt("lastPosted");
     }
 
     public int getPostFrequency(){
-        return this.postFrequency;
+        return this.data.getInt("postFrequency");
     }
 
     public boolean isVirtual(){
-        return virtual;
+        return this.data.getBoolean("virtual");
     }
 
     public boolean getRunning(){
@@ -177,21 +195,19 @@ public class SmartHomeHub {
     }
 
     public String getLastPostedReadable(){
-        return this.lastPostedReadable;
+        return TimeService.StringFromTimeStamp(this.data.getInt("lastPosted"));
     }
 
     public String getJson(){
-        return this.json.toString();
+        return this.data.toString();
     }
 
     public void setName(String name){
-        this.name = name;
-        this.json.put("name",name);
+        this.data.put("name",name);
     }
 
     public void setPostFrequency(int frequency){
-        this.postFrequency = frequency;
-        this.json.put("postFrequency",frequency);
+        this.data.put("postFrequency",frequency);
     }
 
 }
