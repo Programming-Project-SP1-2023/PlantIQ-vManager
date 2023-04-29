@@ -1,6 +1,9 @@
 package com.plantiq.vsmarthomehub.models;
 
-public class User {
+import com.plantiq.vsmarthomehub.core.Model;
+import org.json.JSONObject;
+
+public class User extends Model {
 
     private String firstname;
     private String lastname;
@@ -8,16 +11,24 @@ public class User {
     private int registrationDate;
     private String id;
 
-    public User(String id, String firstname, String lastname,String email,int registrationDate){
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.registrationDate = registrationDate;
+    public User(JSONObject data){
+        super(data);
     }
 
     public String getEmail(){
-        return this.email;
+        return this.data.getString("email");
+    }
+
+    public String getFirstname(){
+        return this.data.getString("firstname");
+    }
+
+    public String getLastname(){
+        return this.data.getString("lastname");
+    }
+
+    public String getRegistrationDate(){
+        return this.data.getString("registrationDate");
     }
 
 }
