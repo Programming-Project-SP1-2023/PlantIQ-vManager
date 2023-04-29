@@ -94,18 +94,6 @@
                               <TableColumn fx:id="actionColumn" prefWidth="84.66668701171875" text="Actions:" />
                           </columns>
                         </TableView>
-                        <BorderPane fx:id="loadingOverlay" prefHeight="268.0" prefWidth="1216.0" style="-fx-background-color: RGBA(0,0,0,0.5);">
-                           <center>
-                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                 <image>
-                                    <Image url="@../../icons/loading.gif" />
-                                 </image>
-                              </ImageView>
-                           </center>
-                           <StackPane.margin>
-                              <Insets top="24.0" />
-                           </StackPane.margin>
-                        </BorderPane>
                         <BorderPane fx:id="noHubsFound" prefHeight="268.0" prefWidth="1216.0" visible="false">
                            <center>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -122,6 +110,18 @@
                                  </children>
                               </VBox>
                            </center>
+                        </BorderPane>
+                        <BorderPane fx:id="loadingOverlay" prefHeight="268.0" prefWidth="1216.0" style="-fx-background-color: RGBA(0,0,0,0.5);">
+                           <center>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../../icons/loading.gif" />
+                                 </image>
+                              </ImageView>
+                           </center>
+                           <StackPane.margin>
+                              <Insets top="24.0" />
+                           </StackPane.margin>
                         </BorderPane>
                      </children>
                   </StackPane>
