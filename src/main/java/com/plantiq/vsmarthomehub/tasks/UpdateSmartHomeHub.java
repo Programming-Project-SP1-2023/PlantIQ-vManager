@@ -1,7 +1,8 @@
 package com.plantiq.vsmarthomehub.tasks;
 
+import com.plantiq.vsmarthomehub.http.HttpMethods;
+import com.plantiq.vsmarthomehub.http.Response;
 import com.plantiq.vsmarthomehub.models.SmartHomeHub;
-import com.plantiq.vsmarthomehub.services.HttpService;
 import javafx.concurrent.Task;
 
 public class UpdateSmartHomeHub extends Task<SmartHomeHub> {
@@ -16,7 +17,8 @@ public class UpdateSmartHomeHub extends Task<SmartHomeHub> {
     @Override
     protected SmartHomeHub call() throws Exception {
 
-        HttpService.patchRequest("https://api-plantiq.azurewebsites.net/smarthub/"+this.model.getId(),"name="+this.model.getName()+"&postFrequency="+this.model.getPostFrequency());
+        Response response = Response.fromRequest("/smarthub/"+this.model.getId(), HttpMethods.PATCH,"name="+this.model.getName()+"&postFrequency="+this.model.getPostFrequency(),true);
+
         return this.model;
     }
 }
