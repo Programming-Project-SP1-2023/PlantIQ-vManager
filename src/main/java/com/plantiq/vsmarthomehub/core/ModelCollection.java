@@ -1,11 +1,11 @@
 package com.plantiq.vsmarthomehub.core;
 
+import com.plantiq.vsmarthomehub.http.HttpMethods;
+import com.plantiq.vsmarthomehub.http.Response;
 import com.plantiq.vsmarthomehub.models.SmartHomeHub;
-import com.plantiq.vsmarthomehub.services.HttpService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -42,33 +42,21 @@ public class ModelCollection {
             }
         });
 
-        String URI = "https://api-plantiq.azurewebsites.net/smarthub/all";
-
-        if(!parameters.isEmpty()){
-            URI += parameters.toString();
-        }
-
-        String response = null;
         ArrayList<SmartHomeHub> output = new ArrayList<>();
-        try {
-            response = HttpService.getRequest(URI);
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
-        if(response != null){
 
-            JSONObject result = new JSONObject(response);
+        Response response = Response.fromRequest("/smarthub/all", HttpMethods.GET, parameters.toString(), true);
 
-            if(!result.has("list")){
+        if(response.getOutcome() && response.getStatus() == 200){
+
+            if(!response.getData().has("list")){
                 return output;
+            }else{
+                JSONArray results = response.data.getJSONArray("list");
+
+                results.forEach((n)-> output.add(new SmartHomeHub((JSONObject) n)));
             }
 
-            JSONArray results = result.getJSONArray("list");
-
-            results.forEach((n)->{
-                output.add(new SmartHomeHub((JSONObject) n));
-            });
         }
 
         return output;
