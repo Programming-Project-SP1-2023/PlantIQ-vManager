@@ -25,6 +25,9 @@ public class vManager extends Application {
 
     private final String version = "vManager dev 0.1";
 
+    //public final String baseURI = "http://localhost_tufst:8080";
+    public final String baseURI = "https://api-plantiq.azurewebsites.net";
+
     private static vManager instance;
 
     private HashMap<String,SmartHomeHub> runningVirtualHubs;
