@@ -50,7 +50,6 @@ public class VirtualSmartHomeHubController {
     private BorderPane noHubsFound;
 
     @FXML
-
     public void initialize(){
 
         //Bind the instance
@@ -94,7 +93,9 @@ public class VirtualSmartHomeHubController {
         this.launchFetchSmartHomeHubsTask();
     }
 
-    private void launchFetchSmartHomeHubsTask(){
+    public void launchFetchSmartHomeHubsTask(){
+        this.loadingOverlay.setVisible(true);
+
         FetchSmartHomeHubs task = new FetchSmartHomeHubs(this.limitSelector.getValue(),this.offsetSelector.getValue(),true);
 
         task.valueProperty().addListener((observableValue, smartHomeHubs, t1) -> VirtualSmartHomeHubController.getInstance().setTableData(t1));
