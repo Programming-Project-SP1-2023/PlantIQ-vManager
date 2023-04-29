@@ -1,5 +1,7 @@
 package com.plantiq.vsmarthomehub.services;
 
+import com.plantiq.vsmarthomehub.http.HttpMethods;
+import com.plantiq.vsmarthomehub.http.Response;
 import com.plantiq.vsmarthomehub.models.User;
 import com.plantiq.vsmarthomehub.vManager;
 import org.json.JSONObject;
@@ -11,48 +13,32 @@ public class AuthenticationService {
     public static boolean login(String email, String password){
 
         String data = "email="+email+"&password="+password;
-        String response;
+
         boolean outcome = false;
 
-        try {
-            response = HttpService.postRequest("https://api-plantiq.azurewebsites.net/auth/login", data);
-        } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
-            response = "no response from http request";
-        }
+        Response response = Response.fromRequest("/auth/login", HttpMethods.POST,data,false);
 
-        JSONObject result = new JSONObject(response);
-
-        if(result.get("outcome").equals("true")){
-            FileService.saveSession(result.getString("session"));
-            AuthenticationService.setUser(result.getString("session"));
+        if(response.getStatus() == 200 && response.getOutcome()){
             outcome = true;
+            FileService.saveSession(response.getContentByKey("session"));
+            AuthenticationService.setUser(response.getContentByKey("session"));
         }
-
 
         return outcome;
     }
 
     public static boolean checkExistingLogin(){
-        Boolean outcome = false;
+        boolean outcome = false;
 
         String session = FileService.loadSession();
 
         if(session == null){
             return false;
         }
-        String response;
 
-        try {
-            response = HttpService.getRequest("https://api-plantiq.azurewebsites.net/auth/validate/"+session);
-        } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
-            response = "no response from http request";
-        }
+        Response response = Response.fromRequest("/auth/validate/"+session, HttpMethods.GET,null,false);
 
-        JSONObject result = new JSONObject(response);
-
-        if((boolean) result.get("outcome")){
+        if(response.getStatus() == 200 && response.getOutcome()){
             outcome = true;
             AuthenticationService.setUser(session);
         }
@@ -61,38 +47,31 @@ public class AuthenticationService {
     }
 
     public static boolean logout(){
-        String response;
 
+        boolean outcome = false;
 
-        try {
-            response = HttpService.deleteRequest("https://api-plantiq.azurewebsites.net/auth/logout?token="+FileService.loadSession());
-        } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
-            response = "no response from http request";
+        String session = FileService.loadSession();
+
+        Response response = Response.fromRequest("/auth/logout?token="+session, HttpMethods.DELETE,null,true);
+
+        if(response.getStatus() == 200 && response.getOutcome()){
+            outcome = true;
         }
 
-        System.out.println(response);
-
-        return true;
+        return outcome;
     }
 
     private static void setUser(String token){
 
         vManager.getInstance().setToken(token);
 
-        String response = null;
-        try {
-            response = HttpService.getRequest("https://api-plantiq.azurewebsites.net/user/info");
-        } catch (InterruptedException | IOException e) {
-            throw new RuntimeException(e);
-        }
+        Response response = Response.fromRequest("/user/info",HttpMethods.GET,null,true);
 
-        if(response != null){
-            JSONObject result = new JSONObject(response);
-            result = result.getJSONObject("data");
-            vManager.getInstance().setUser(new User(result.getString("id"),result.getString("firstname"),result.getString("surname"),result.getString("email"), 0));
+        if(response.getStatus() == 200 && response.getOutcome()){
+
+            vManager.getInstance().setUser(new User(response.getData().getJSONObject("data")));
         }else{
-            vManager.getInstance().setUser(new User("network_error","network_error","network_error","network@error.com", 0));
+            vManager.getInstance().setUser(new User(new JSONObject()));
         }
     }
 
