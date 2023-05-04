@@ -25,6 +25,9 @@ public class FetchSmartHomeHubs extends Task<ObservableList<SmartHomeHub>> {
                 SmartHomeHub.collection()
                 .where("virtual","true")
                 .where("limit",String.valueOf(this.limit))
-                .where("offset", String.valueOf(this.offset)).get());
+                .where("offset", String.valueOf(this.offset))
+                .where("sort","ASC")
+                .where("sortBy","name")
+                .get());
     }
 }
