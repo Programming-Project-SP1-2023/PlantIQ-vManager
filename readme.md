@@ -16,3 +16,16 @@ No, due to limited time and vManager as a standalone program possibly being cons
 Currently the user can login with their active PlantIQ account and manage their virtual smart home hubs including deleting, renaming and changing post frequency of them.
 
 ## Screenshots
+
+### Logging in:
+<img width="399" alt="vManagerLoginScreen" src="https://github.com/Programming-Project-SP1-2023/PlantIQ-vManager/assets/79836947/30d722dd-8c83-4c2c-8459-5aec1838c252">
+
+### Virtual Smart Hubs overview:
+<img width="960" alt="ManagerVirtualSmartHubs" src="https://github.com/Programming-Project-SP1-2023/PlantIQ-vManager/assets/79836947/8d7367e7-64a6-44b9-a381-b80fee81b298">
+
+###  Viewing a specific virtual smart hub:
+<img width="671" alt="ViewingAVirtualSmartHub" src="https://github.com/Programming-Project-SP1-2023/PlantIQ-vManager/assets/79836947/412c64cc-94dd-4809-9d31-a64983b50c29">
+
+###  Deleting a virtual smart home hub:
+<img width="361" alt="DeletingAVirtualSmartHub" src="https://github.com/Programming-Project-SP1-2023/PlantIQ-vManager/assets/79836947/6049cf2f-c408-45f2-86e1-22b5805222ea">
+
